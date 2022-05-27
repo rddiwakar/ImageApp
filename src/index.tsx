@@ -4,6 +4,8 @@ import './index.css';
 import App from './App';
 import { Provider } from 'react-redux';
 import store from './store/store';
+import SelectImage from './Page/selectPage';
+import AddImagePage from './Page/AddImage';
 
 const root = ReactDOM.createRoot(
   document.getElementById('root') as HTMLElement
@@ -11,7 +13,9 @@ const root = ReactDOM.createRoot(
 root.render(
   <React.StrictMode>
     <Provider store={store}>
-      <App />
+    {/* <SelectImage /> */}
+    <AddImagePage />
+      {/* <App /> */}
     </Provider>
   </React.StrictMode>
 );
