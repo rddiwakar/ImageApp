@@ -1,24 +1,33 @@
 import React from 'react';
-import logo from './logo.svg';
-import './App.css';
 
 function App() {
   return (
-    <div className="App">
-      <header className="App-header">
-        <img src={logo} className="App-logo" alt="logo" />
-        <p>
-          Edit <code>src/App.tsx</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
-      </header>
+    <div className="App text-lg">
+      <div>
+        <h2>Media Library</h2>
+        <button>Add Image</button>
+      </div>
+      <p>Create, edit and manage the media on your community.</p>
+      <div>
+        <div>
+          <div>select all</div>
+          <div>
+            <p>delete</p>
+            <input type="text" placeholder='search media' />
+          </div>
+        </div>
+        <div>
+          <div>Sort By</div>
+          <div>
+            <button>Title</button>
+            <button>Date</button>
+            <button>Size</button>
+          </div>
+        </div>
+      </div>
+      <div>
+        
+      </div>
     </div>
   );
 }
