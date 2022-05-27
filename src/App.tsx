@@ -4,7 +4,7 @@ function App() {
   return (
     <div className="App text-lg">
       <div>
-        <h2>Media Library</h2>
+        <h2 className="text-3xl font-bold underline">Media Library</h2>
         <button>Add Image</button>
       </div>
       <p>Create, edit and manage the media on your community.</p>
