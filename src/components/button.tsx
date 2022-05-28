@@ -1,12 +1,13 @@
 import React from 'react';
 type ButtonProps ={
     btntext:String,
-    css :String
+    css :String,
+    onClick?:()=>any
 }
-function PrimaryButton({btntext,css}:ButtonProps){
+function PrimaryButton({btntext,css,onClick}:ButtonProps){
     return(
         <>
-            <button className={`py-2 px-3 ${css}`}>{btntext}</button>
+            <button className={`${css}`} onClick={onClick}>{btntext}</button>
         </>
     )
 }

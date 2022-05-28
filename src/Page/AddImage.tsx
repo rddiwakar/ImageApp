@@ -9,7 +9,7 @@ function AddImagePage(){
                 description="search and select an image"
                 btntext ={{
                     text:"X",
-                    css:""
+                    css:"hidden"
                 }}
             />
             <div className="border-dotted rounded-xl px-2 py-2 mx-2 my-4 h-96">
@@ -19,11 +19,10 @@ function AddImagePage(){
             </div>
             <div className="text-right">
                 <PrimaryButton 
-                    btntext="Select Image"
-                    css="text-xs bg-sky-500/100 text-white"
+                    btntext="Add Image"
+                    css="text-xs bg-sky-500/100 text-white py-2 px-3 "
                 />
             </div>
-
         </div>
     )
 }

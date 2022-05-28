@@ -1,10 +1,18 @@
-import React from 'react';
+import React,{useState} from 'react';
 import RiDeleteBin6Line   from "react-icons/ri"
 import PrimaryButton from './components/button';
 import SearchInput from './components/input';
 import ImageWrapper from './components/imageWrapper';
 import Heading from './components/heading';
+import ModalComponent from './Modules/selectImage';
+import "antd/dist/antd.css";
+import SelectImagePage from './Page/selectPage';
+import AddImagePage from './Page/AddImage';
 function App() {
+  const [selectModulevisible, setSelectModuleVisible] = useState(false);
+  const openSelectModuleVisible =()=>setSelectModuleVisible(true)
+  const closeSelectModuleVisible = () => setSelectModuleVisible(false)
+
   return (
     <div className='my-8 mx-6'>
       <Heading 
@@ -12,7 +20,8 @@ function App() {
         description ="Create, edit and manage the media on your community."
         btntext ={{
           text:"Add Image",
-          css:"text-xs bg-sky-500/100 text-white"
+          css:"text-xs bg-sky-500/100 text-white py-2 px-3 ",
+          onClick: openSelectModuleVisible
       }}
       />
       <div className='border divide-x border-slate-200 divide-y divide-slate-200 rounded-md mt-3'>
@@ -31,15 +40,15 @@ function App() {
           <div className='basis-5/6 flex '>
             <PrimaryButton 
               btntext="Title"
-              css="text-black border mr-2 text-sm bg-white py-1 px-4"
+              css="text-black border mr-2 text-sm bg-white py-2 px-3 "
             />
             <PrimaryButton 
               btntext="Date"
-              css="text-black border mr-2 text-sm bg-white py-1 px-4"
+              css="text-black border mr-2 text-sm bg-white py-2 px-3 "
             />
             <PrimaryButton 
               btntext="Size"
-              css="text-black border mr-2 text-sm bg-white py-1 px-4"
+              css="text-black border mr-2 text-sm bg-white py-2 px-3 "
             />
           </div>
         </div>
@@ -47,6 +56,14 @@ function App() {
       <ImageWrapper 
         imgcss="w-36 h-22"
       />
+      <ModalComponent
+        onClose={closeSelectModuleVisible}
+        visible={selectModulevisible}
+        width={1000}
+      >
+        <SelectImagePage onCloseSelect={closeSelectModuleVisible} />
+      </ModalComponent>
+      
     </div>
   );
 }
