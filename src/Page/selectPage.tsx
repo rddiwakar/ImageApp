@@ -5,7 +5,9 @@ import SearchInput from "../components/input";
 import React, {useState} from "react";
 import ModalComponent from "../Modules/selectImage";
 import AddImagePage from "./AddImage";
-
+import {useAppDispatch, useAppSelector} from "../hooks/redux-hooks"
+import { RootState } from "../store/store";
+import { selectFetchImages } from "../store/selectedAction";
 type SelectImagePageProps ={
     onCloseSelect:()=>any
 }
@@ -16,6 +18,15 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
         setAddModal(true)
         onCloseSelect()
     }
+    const [selectInput,setSelectInput] = useState('');
+    const handleSelectChange =  (event: any) => {
+        setSelectInput(event.target.value)
+    }
+    const selectImage = useAppSelector((state:RootState)=>state.SelectedImageReducer.selectData);
+    const selectLoading = useAppSelector((state:RootState)=>state.SelectedImageReducer.selectLoading)
+    const dispatch = useAppDispatch();
+
+    
     return (
         <div className="m-3 ">
             <Heading
@@ -27,18 +38,27 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
                 }}
             />
             <div className="mt-8 flex">
-                {/* <SearchInput /> */}
+                <SearchInput 
+                   Change={handleSelectChange} 
+                   Value={selectInput}
+                />
                 <div className="ml-4">
                     <PrimaryButton
                         btntext="Search"
                         css="text-black border mr-4 text-sm bg-slate-200 py-1 px-2 "
+                        onClick={()=>dispatch(selectFetchImages(selectInput))}
                     />
                 </div>
             </div>
             <div className="border border-dotted rounded-xl px-2 py-2 mx-2 my-4 h-96 overflow-y-auto">
-                <ImageWrapper
-                    imgcss="w-50 h-32"
-                />
+                {
+                    selectLoading ? "...loading":
+                    <ImageWrapper
+                        imgcss="w-48 h-32"
+                        images={selectImage}
+                    />
+                }
+                
             </div>
             <div className="text-right">
                 <PrimaryButton

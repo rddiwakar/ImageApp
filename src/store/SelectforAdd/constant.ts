@@ -1,0 +1,3 @@
+export const SELECT_CHECKED = "SELECT_CHECKED";
+export const SELECT_UNCHECKED = "SELECT_UNCHECKED";
+export const ADD_CHECKED = "ADD_CHECKED";

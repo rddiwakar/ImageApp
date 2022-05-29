@@ -5,7 +5,7 @@ const FetchImage = (query:String='random')=>{
     return axios.get(`${api}search/photos?query=${query}&client_id=${Access_Key}`)    
 }
 const SearchImage = (query:String)=>{
-    return axios.get(`${api}photos?query=${query}`)
+    return axios.get(`${api}search/photos?query=${query}&client_id=${Access_Key}`)
 }
 
 export {FetchImage,SearchImage}
