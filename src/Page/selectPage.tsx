@@ -26,14 +26,16 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
                     css: "hidden"
                 }}
             />
-            <div className="mt-8">
-                <SearchInput />
-                <PrimaryButton
-                    btntext="Search"
-                    css="text-black border mr-4 text-sm bg-white py-1 px-4 "
-                />
+            <div className="mt-8 flex">
+                {/* <SearchInput /> */}
+                <div className="ml-4">
+                    <PrimaryButton
+                        btntext="Search"
+                        css="text-black border mr-4 text-sm bg-slate-200 py-1 px-2 "
+                    />
+                </div>
             </div>
-            <div className="border-dotted rounded-xl px-2 py-2 mx-2 my-4 h-96">
+            <div className="border border-dotted rounded-xl px-2 py-2 mx-2 my-4 h-96 overflow-y-auto">
                 <ImageWrapper
                     imgcss="w-50 h-32"
                 />
@@ -48,7 +50,7 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
             <ModalComponent
                 onClose={() => setAddModal(false)}
                 visible={addModal}
-                width={600}
+                width={712}
             >
                 <AddImagePage />
             </ModalComponent>

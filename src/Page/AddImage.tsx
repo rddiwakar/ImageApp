@@ -12,10 +12,31 @@ function AddImagePage(){
                     css:"hidden"
                 }}
             />
-            <div className="border-dotted rounded-xl px-2 py-2 mx-2 my-4 h-96">
-                <ImageComponent
-                     imgcss="px-2 py-2 w-96 h-96"
-                />
+            <div className="border border-dotted rounded-xl px-2 py-2 m-auto">
+                <div className="flex justify-center">
+                    <ImageComponent
+                        imgcss="px-2 h-92 "
+                        hiddenDisplay={true}
+                    />
+                </div>
+                <div className="flex justify-between ">
+                    <div className="w-3/6 pl-2">
+                        <div>Title</div>
+                        <div className="border pl-5 w-5/6">Imagename</div>
+                    </div>
+                    <div className="w-1/6">
+                        <div>file type</div>
+                        <div>Imagename</div>
+                    </div>
+                    <div className="w-1/6">
+                        <div>file size</div>
+                        <div>800</div>
+                    </div>
+                    <div className="w-1/6">
+                        <div>Dimention</div>
+                        <div>400*600</div>
+                    </div>
+                </div>
             </div>
             <div className="text-right">
                 <PrimaryButton 

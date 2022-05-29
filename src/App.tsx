@@ -1,5 +1,4 @@
-import React,{useState} from 'react';
-import RiDeleteBin6Line   from "react-icons/ri"
+import React,{useEffect, useState} from 'react';
 import PrimaryButton from './components/button';
 import SearchInput from './components/input';
 import ImageWrapper from './components/imageWrapper';
@@ -7,12 +6,27 @@ import Heading from './components/heading';
 import ModalComponent from './Modules/selectImage';
 import "antd/dist/antd.css";
 import SelectImagePage from './Page/selectPage';
-import AddImagePage from './Page/AddImage';
+import {RiDeleteBin6Line as DeleteIcon} from 'react-icons/ri'
+import {useAppDispatch,useAppSelector} from './hooks/redux-hooks'
+import { RootState } from './store/store'
+import { fetchImages } from './store/action';
+
 function App() {
   const [selectModulevisible, setSelectModuleVisible] = useState(false);
   const openSelectModuleVisible =()=>setSelectModuleVisible(true)
-  const closeSelectModuleVisible = () => setSelectModuleVisible(false)
-
+  const closeSelectModuleVisible = () => setSelectModuleVisible(false);
+  const dispatch = useAppDispatch()
+  const Images = useAppSelector((state:RootState)=>state.data);
+  const loading = useAppSelector((state:RootState)=>state.loading);
+  const [inputValue,setInputValue] = useState("");
+  const handleChange = async(event:any)=>{
+    await setInputValue(event.target.value)
+    dispatch(fetchImages(inputValue))
+  }
+  useEffect(()=>{
+    dispatch(fetchImages("random"))
+  },[])
+  
   return (
     <div className='my-8 mx-6'>
       <Heading 
@@ -25,18 +39,23 @@ function App() {
       }}
       />
       <div className='border divide-x border-slate-200 divide-y divide-slate-200 rounded-md mt-3'>
-        <div className=' divide-slate-200 flex flex-row px-3 py-4'>
-          <div className="basis-1/6 flex justify-center ">
+        <div className=' divide-slate-200 flex flex-row px-1 '>
+          <div className="basis-1/6 flex justify-center pt-4">
             <input type='checkbox' className='mt-1' />
             <div className='pl-4'>Select all</div>
           </div>
-          <div className='basis-5/6 flex justify-between'>
-            <p> delete </p>
-            <SearchInput />
+          <div className='basis-5/6 flex justify-between pt-3'>
+            <p className='pt-1'> <DeleteIcon className='text-xl' /> </p>
+            <div className='pb-2 mr-2'>
+              <SearchInput 
+                Value={inputValue}
+                Change={handleChange}
+              />
+            </div>
           </div>
         </div>
         <div className='flex px-3 py-2'>
-          <div className='basis-1/6 text-center'>Sort By</div>
+          <div className='basis-1/6 text-center pt-2'>Sort By</div>
           <div className='basis-5/6 flex '>
             <PrimaryButton 
               btntext="Title"
@@ -53,13 +72,17 @@ function App() {
           </div>
         </div>
       </div>
+      {loading ? '...loading':
       <ImageWrapper 
-        imgcss="w-36 h-22"
+        imgcss="w-36 h-22" 
+        images={Images}
       />
+      }
+      
       <ModalComponent
         onClose={closeSelectModuleVisible}
         visible={selectModulevisible}
-        width={1000}
+        width={1190}
       >
         <SelectImagePage onCloseSelect={closeSelectModuleVisible} />
       </ModalComponent>

@@ -7,7 +7,7 @@ type ButtonProps ={
 function PrimaryButton({btntext,css,onClick}:ButtonProps){
     return(
         <>
-            <button className={`${css}`} onClick={onClick}>{btntext}</button>
+            <button className={`rounded-sm ${css}`} onClick={onClick}>{btntext}</button>
         </>
     )
 }
