@@ -43,8 +43,8 @@ function App() {
   const handleSort = (title: String) => {
     setSort(title)
   };
-  // const sortFunction = SORTS[sort];
-  // const sortedList = sortFunction(Images);
+  const sortFunction = SORTS[sort];   
+  const sortedList = sortFunction(Images);
   return (
     <div className='my-8 mx-6'>
       <Heading

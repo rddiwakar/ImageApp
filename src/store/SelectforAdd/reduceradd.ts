@@ -1,20 +1,18 @@
-import {SELECT_CHECKED, SELECT_UNCHECKED}  from "./constant";
+import { SELECT_CHECKED, SELECT_UNCHECKED}  from "./constant";
 
 type ActionProps ={
     type: String,
-    payload:Number
-}
-const initailAdd ={
-    data:[]
+    payload:any
 }
 
-function ReducerAdd (state=initailAdd,action:ActionProps){
+
+function ReducerAdd (state=[],action:ActionProps){
     switch(action.type) {
         case SELECT_CHECKED:
-            return {...state,data:action.payload}
+            return [...state,action.payload] 
         case SELECT_UNCHECKED:
-            const newState = state.data.filter((item:any)=>item.id !== action.payload)
-            return {data:newState}
+            const checkedState = state.filter((item:any)=>item.id !== action.payload)
+            return checkedState  
         default:
             return state        
     }

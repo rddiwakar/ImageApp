@@ -1,6 +1,6 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { FetchImage } from "../service/api";
-import { FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "./constants";
+import { DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "./constants";
 import { RootState } from "./store";
 
 export const fetchImages = (query:string):ThunkAction<void,RootState,unknown,AnyAction>=>{
@@ -27,4 +27,10 @@ export const fetchImages = (query:string):ThunkAction<void,RootState,unknown,Any
                 )})
                 .catch(error=>dispatch(fail(error)))
         }   
+}
+export const deleteAction =(data:any)=>{
+    return{
+        type:DELETE_CHECKED,
+        payload:data
+    }
 }
