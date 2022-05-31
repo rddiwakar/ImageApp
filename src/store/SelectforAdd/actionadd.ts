@@ -1,4 +1,4 @@
-import { ADD_CHECKED, SELECT_CHECKED, SELECT_UNCHECKED } from "./constant"
+import { ADD_CHECKED, ALL_CHECKED, REMOVE_CHECKED, SELECT_CHECKED, SELECT_UNCHECKED } from "./constant"
 
 export const selectCheckedAction =(data:any)=>{
     return {
@@ -10,6 +10,17 @@ export const selectUncheckedAction =(id:string) =>{
     return {
         type:SELECT_UNCHECKED,
         payload: id
+    }
+}
+export const AllCheckedAction = (data:any)=>{
+    return{
+        type:ALL_CHECKED,
+        payload:data
+    }
+}
+export const removeCheckedAction =() =>{
+    return{
+        type:REMOVE_CHECKED
     }
 }
 

@@ -1,4 +1,5 @@
-import { SELECT_CHECKED, SELECT_UNCHECKED}  from "./constant";
+
+import { SELECT_CHECKED, SELECT_UNCHECKED,ALL_CHECKED, REMOVE_CHECKED}  from "./constant";
 
 type ActionProps ={
     type: String,
@@ -12,7 +13,11 @@ function ReducerAdd (state=[],action:ActionProps){
             return [...state,action.payload] 
         case SELECT_UNCHECKED:
             const checkedState = state.filter((item:any)=>item.id !== action.payload)
-            return checkedState  
+            return checkedState
+        case REMOVE_CHECKED:   
+            return []
+        case ALL_CHECKED:
+            return [...state,...action.payload]        
         default:
             return state        
     }

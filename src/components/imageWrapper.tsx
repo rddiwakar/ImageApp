@@ -5,12 +5,11 @@ type ImageWrapperProps = {
     images ?:any
 }
 function ImageWrapper({imgcss,images}:ImageWrapperProps){
-    console.log("img",images)
     return(
         <div className="flex flex-wrap justify-between">
             {images.map((item :any)=>{
                 return(
-                    <ImageComponent imgcss={imgcss} image={item} />
+                    <ImageComponent imgcss={imgcss} image={item} key={item.id} />
                 )
             })}
         {/* <ImageComponent imgcss={imgcss} />

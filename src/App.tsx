@@ -9,8 +9,9 @@ import SelectImagePage from './Page/selectPage';
 import { RiDeleteBin6Line as DeleteIcon } from 'react-icons/ri'
 import { useAppDispatch, useAppSelector } from './hooks/redux-hooks'
 import { RootState } from './store/store'
-import { fetchImages } from './store/action';
+import { deleteCheckedAction, fetchImages } from './store/action';
 import { sortBy} from 'lodash';
+import { removeCheckedAction } from './store/SelectforAdd/actionadd';
 
 type SortType ={
   NONE:(list:any)=>any,
@@ -25,6 +26,7 @@ function App() {
   const dispatch = useAppDispatch()
   const Images = useAppSelector((state: RootState) => state.ImageReducer.data);
   const loading = useAppSelector((state: RootState) => state.ImageReducer.loading);
+  const checkedItems =useAppSelector((state:RootState)=>state.ReducerAdd);
   const [inputValue, setInputValue] = useState("");
   const handleChange = async (event: any) => {
     await setInputValue(event.target.value)
@@ -45,6 +47,7 @@ function App() {
   };
   const sortFunction = SORTS[sort];   
   const sortedList = sortFunction(Images);
+  
   return (
     <div className='my-8 mx-6'>
       <Heading
@@ -59,11 +62,22 @@ function App() {
       <div className='border divide-x border-slate-200 divide-y divide-slate-200 rounded-md mt-3'>
         <div className=' divide-slate-200 flex flex-row px-1 '>
           <div className="basis-1/6 flex justify-center pt-4">
-            <input type='checkbox' className='mt-1' />
+            <input 
+              type='checkbox' 
+              className='mt-1' 
+            />
             <div className='pl-4'>Select all</div>
           </div>
           <div className='basis-5/6 flex justify-between pt-3'>
-            <p className='pt-1'> <DeleteIcon className='text-xl' /> </p>
+            <p className='pt-1' > 
+                <DeleteIcon 
+                  className='text-xl' 
+                  onClick={()=>{
+                    dispatch(deleteCheckedAction(checkedItems))
+                    dispatch(removeCheckedAction())
+                  }}
+                />
+            </p>
             <div className='pb-2 mr-2'>
               <SearchInput
                 Value={inputValue}
@@ -96,7 +110,7 @@ function App() {
       {loading ? '...loading' :
         <ImageWrapper
           imgcss="w-40 h-24"
-          images={Images}
+          images={sortedList}
         />
       }
 

@@ -28,7 +28,7 @@ export const fetchImages = (query:string):ThunkAction<void,RootState,unknown,Any
                 .catch(error=>dispatch(fail(error)))
         }   
 }
-export const deleteAction =(data:any)=>{
+export const deleteCheckedAction =(data:any)=>{
     return{
         type:DELETE_CHECKED,
         payload:data
