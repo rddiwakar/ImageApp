@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
-import {useAppDispatch} from "../hooks/redux-hooks"
+import {useAppDispatch,useAppSelector} from "../hooks/redux-hooks"
 import { selectCheckedAction, selectUncheckedAction } from "../store/SelectforAdd/actionadd";
+import { RootState } from "../store/store";
 type ImageComponentProps={
     imgcss:String,
     hiddenDisplay ?:boolean,
@@ -8,15 +9,20 @@ type ImageComponentProps={
 }
 
 function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
+  const allChecked = useAppSelector((state:RootState)=>state.HandleCheck.allChecked)
   const dispatch = useAppDispatch()
-    const [checked,setChecked]= useState(true);
+    const [checked,setChecked]= useState(false);
     const handleChecked=()=>{
          setChecked(()=>!checked)
     }
     useEffect(()=>{
+      setChecked(allChecked)
+    },[allChecked])
+    useEffect(()=>{
       checked ? dispatch(selectCheckedAction(image)):
                 dispatch(selectUncheckedAction(image.id)) 
     },[checked])
+    
     const name = image.description && image.description.split(" ")[0]
     
     return(

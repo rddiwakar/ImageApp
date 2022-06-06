@@ -31,11 +31,9 @@ const ImageReducer = (state=initialImageState,action:ActionType) =>{
                 data:action.payload
             }
         case DELETE_CHECKED :
-            let actionArr = action.payload
             const results = state.data.filter(({ id: id1 }:any) => !action.payload.some(({ id: id2 }:any) => id2 === id1));
-            
             return {
-                data:results,
+                data:results ,
                 loading:false
             }           
         default:

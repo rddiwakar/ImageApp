@@ -11,7 +11,7 @@ import { useAppDispatch, useAppSelector } from './hooks/redux-hooks'
 import { RootState } from './store/store'
 import { deleteCheckedAction, fetchImages } from './store/action';
 import { sortBy} from 'lodash';
-import { removeCheckedAction } from './store/SelectforAdd/actionadd';
+import { AllCheckedAction, removeCheckedAction } from './store/SelectforAdd/actionadd';
 
 type SortType ={
   NONE:(list:any)=>any,
@@ -26,7 +26,7 @@ function App() {
   const dispatch = useAppDispatch()
   const Images = useAppSelector((state: RootState) => state.ImageReducer.data);
   const loading = useAppSelector((state: RootState) => state.ImageReducer.loading);
-  const checkedItems =useAppSelector((state:RootState)=>state.ReducerAdd);
+  const checkedItems = useAppSelector((state:RootState)=>state.HandleCheck.checkedData);
   const [inputValue, setInputValue] = useState("");
   const handleChange = async (event: any) => {
     await setInputValue(event.target.value)
@@ -47,7 +47,16 @@ function App() {
   };
   const sortFunction = SORTS[sort];   
   const sortedList = sortFunction(Images);
-  
+
+  const [checked,setChecked]= useState(false);
+    const handleChecked=()=>{
+         setChecked(()=>!checked)
+    }
+    useEffect(()=>{
+      checked ? dispatch(AllCheckedAction(Images)):
+                dispatch(removeCheckedAction()) 
+    },[checked])
+    
   return (
     <div className='my-8 mx-6'>
       <Heading
@@ -64,7 +73,9 @@ function App() {
           <div className="basis-1/6 flex justify-center pt-4">
             <input 
               type='checkbox' 
-              className='mt-1' 
+              className='mt-1'
+              checked={checked}
+              onChange={handleChecked} 
             />
             <div className='pl-4'>Select all</div>
           </div>
