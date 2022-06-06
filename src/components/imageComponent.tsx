@@ -1,7 +1,7 @@
 import { useEffect, useState } from "react";
 import {useAppDispatch,useAppSelector} from "../hooks/redux-hooks"
-import { selectCheckedAction, selectUncheckedAction } from "../store/SelectforAdd/actionadd";
-import { RootState } from "../store/store";
+import { selectCheckedAction, selectUncheckedAction } from "../Redux/Action/actionadd";
+import { RootState } from "../Redux/store";
 type ImageComponentProps={
     imgcss:String,
     hiddenDisplay ?:boolean,

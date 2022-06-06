@@ -1,7 +1,7 @@
 import { configureStore,combineReducers } from "@reduxjs/toolkit";
-import ImageReducer from "./reducer";
-import SelectedImageReducer from "./selectedReducer";
-import HandleCheck from "./SelectforAdd/reduceradd";
+import ImageReducer from "./Reducers/reducer";
+import SelectedImageReducer from "./Reducers/selectedReducer";
+import HandleCheck from "./Reducers/reduceradd";
 
 const rootReducer = combineReducers({
     ImageReducer,

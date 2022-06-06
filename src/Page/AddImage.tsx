@@ -2,7 +2,7 @@ import Heading from "../components/heading";
 import ImageComponent from "../components/imageComponent";
 import PrimaryButton from "../components/button";
 import { useAppSelector } from "../hooks/redux-hooks";
-import { RootState } from "../store/store";
+import { RootState } from "../Redux/store";
 
 function AddImagePage(){
     const image = useAppSelector((state: RootState) => state.HandleCheck.checkedData);

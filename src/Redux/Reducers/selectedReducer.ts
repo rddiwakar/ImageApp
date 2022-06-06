@@ -1,6 +1,6 @@
 
-import { ActionType } from "../react-app-env";
-import { SEARCH_ERROR, SEARCH_REQUEST, SEARCH_SUCCESS } from "./constants";
+import { ActionType } from "../../react-app-env";
+import { SEARCH_ERROR, SEARCH_REQUEST, SEARCH_SUCCESS } from "../Constant/constants";
 
 
 const initialImageState={

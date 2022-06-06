@@ -1,7 +1,7 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
-import { FetchImage } from "../service/api";
-import { DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "./constants";
-import { RootState } from "./store";
+import { FetchImage } from "../../service/api";
+import { DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "../Constant/constants";
+import { RootState } from "../store";
 
 export const fetchImages = (query:string):ThunkAction<void,RootState,unknown,AnyAction>=>{
 

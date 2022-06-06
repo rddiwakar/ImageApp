@@ -1,4 +1,4 @@
-import { ADD_CHECKED, ALL_CHECKED, REMOVE_CHECKED, SELECT_CHECKED, SELECT_UNCHECKED } from "./constant"
+import { ADD_CHECKED, ALL_CHECKED, REMOVE_CHECKED, SELECT_CHECKED, SELECT_UNCHECKED } from "../Constant/renameconstant"
 
 export const selectCheckedAction =(data:any)=>{
     return {

@@ -6,8 +6,8 @@ import React, {useState} from "react";
 import ModalComponent from "../Modules/selectImage";
 import AddImagePage from "./AddImage";
 import {useAppDispatch, useAppSelector} from "../hooks/redux-hooks"
-import { RootState } from "../store/store";
-import { selectFetchImages } from "../store/selectedAction";
+import { RootState } from "../Redux/store";
+import { selectFetchImages } from "../Redux/Action/selectedAction";
 type SelectImagePageProps ={
     onCloseSelect:()=>any
 }
@@ -56,6 +56,7 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
                     <ImageWrapper
                         imgcss="w-48 h-32"
                         images={selectImage}
+                        hiddenDisplay = {true}
                     />
                 }
                 

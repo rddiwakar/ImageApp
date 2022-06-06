@@ -1,7 +1,7 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
-import { SearchImage } from "../service/api";
-import { SEARCH_ERROR, SEARCH_REQUEST, SEARCH_SUCCESS } from "./constants";
-import { RootState } from "./store";
+import { SearchImage } from "../../service/api";
+import { SEARCH_ERROR, SEARCH_REQUEST, SEARCH_SUCCESS } from "../Constant/constants";
+import { RootState } from "../store";
 
 export const selectFetchImages = (query:string):ThunkAction<void,RootState,unknown,AnyAction>=>{
 

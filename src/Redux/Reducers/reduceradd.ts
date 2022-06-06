@@ -1,5 +1,5 @@
 
-import { SELECT_CHECKED, SELECT_UNCHECKED,ALL_CHECKED, REMOVE_CHECKED}  from "./constant";
+import { SELECT_CHECKED, SELECT_UNCHECKED,ALL_CHECKED, REMOVE_CHECKED}  from "../Constant/renameconstant";
 
 type ActionProps ={
     type: String,

@@ -8,10 +8,10 @@ import "antd/dist/antd.css";
 import SelectImagePage from './Page/selectPage';
 import { RiDeleteBin6Line as DeleteIcon } from 'react-icons/ri'
 import { useAppDispatch, useAppSelector } from './hooks/redux-hooks'
-import { RootState } from './store/store'
-import { deleteCheckedAction, fetchImages } from './store/action';
+import { RootState } from './Redux/store'
+import { deleteCheckedAction, fetchImages } from './Redux/Action/action';
 import { sortBy} from 'lodash';
-import { AllCheckedAction, removeCheckedAction } from './store/SelectforAdd/actionadd';
+import { AllCheckedAction, removeCheckedAction } from './Redux/Action/actionadd';
 
 type SortType ={
   NONE:(list:any)=>any,
