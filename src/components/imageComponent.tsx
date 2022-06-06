@@ -5,7 +5,7 @@ import { RootState } from "../store/store";
 type ImageComponentProps={
     imgcss:String,
     hiddenDisplay ?:boolean,
-    image ?:any
+    image :any
 }
 
 function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
@@ -23,7 +23,7 @@ function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
                 dispatch(selectUncheckedAction(image.id)) 
     },[checked])
     
-    const name = image.description && image.description.split(" ")[0]
+    const name = image && image.description && image.description.split(" ")[0]
     
     return(
         <div className='relative mt-4 mr-3'>
@@ -33,8 +33,8 @@ function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
             checked={checked} 
             onChange={handleChecked}
           />
-          <img alt='photo' src={image.urls.small} className={`${imgcss}`} />
-          <div className={` ${hiddenDisplay && 'hidden'}`}>{name}</div>
+          <img alt='photo' src={image && image.urls && image.urls.small} className={`${imgcss}`} />
+          <div className={` ${hiddenDisplay && 'hidden'}`}>{name ||""}</div>
         </div>
     )
 }
