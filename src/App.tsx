@@ -24,14 +24,16 @@ function App() {
   const openSelectModuleVisible = () => setSelectModuleVisible(true)
   const closeSelectModuleVisible = () => setSelectModuleVisible(false);
   const dispatch = useAppDispatch()
-  const Images = useAppSelector((state: RootState) => state.ImageReducer.data);
+  let Images = useAppSelector((state: RootState) => state.ImageReducer.data);
   const loading = useAppSelector((state: RootState) => state.ImageReducer.loading);
   const checkedItems = useAppSelector((state:RootState)=>state.HandleCheck.checkedData);
   const [inputValue, setInputValue] = useState("");
   const handleChange = async (event: any) => {
     await setInputValue(event.target.value)
-    dispatch(fetchImages(inputValue))
   }
+  
+  Images = Images.filter((item : any) =>item.description && item.description.startsWith(inputValue))
+
   useEffect(() => {
     dispatch(fetchImages("random"))
   }, [])

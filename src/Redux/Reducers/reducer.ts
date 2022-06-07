@@ -1,6 +1,6 @@
 
 import { ActionType } from "../../react-app-env";
-import { DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "../Constant/constants";
+import { ADD_SELECT, DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "../Constant/constants";
 
 type InitialImageStatetype ={
     data:any ,
@@ -35,7 +35,12 @@ const ImageReducer = (state=initialImageState,action:ActionType) =>{
             return {
                 data:results ,
                 loading:false
-            }           
+            }
+        case ADD_SELECT :
+            return {
+                ...state,
+                data:[...state.data,action.payload]
+            }                  
         default:
             return state
     }

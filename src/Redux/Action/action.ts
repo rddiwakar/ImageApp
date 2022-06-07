@@ -1,6 +1,6 @@
 import { AnyAction, ThunkAction } from "@reduxjs/toolkit";
 import { FetchImage } from "../../service/api";
-import { DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "../Constant/constants";
+import { ADD_SELECT, DELETE_CHECKED, FETCH_ERROR, FETCH_REQUEST, FETCH_SUCCESS } from "../Constant/constants";
 import { RootState } from "../store";
 
 export const fetchImages = (query:string):ThunkAction<void,RootState,unknown,AnyAction>=>{
@@ -32,5 +32,11 @@ export const deleteCheckedAction =(data:any)=>{
     return{
         type:DELETE_CHECKED,
         payload:data
+    }
+}
+export const AddSelectAction = (image:any)=>{
+    return{
+        type:ADD_SELECT,
+        payload:image
     }
 }

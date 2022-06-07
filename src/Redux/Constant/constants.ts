@@ -6,4 +6,5 @@ export const SEARCH_SUCCESS = "SEARCH_SUCCESS";
 export const SEARCH_REQUEST = "SEARCH_REQUEST";
 export const SEARCH_ERROR = "SEARCH_ERROR";
 
-export const DELETE_CHECKED = "DELETE_CHECKED"
+export const DELETE_CHECKED = "DELETE_CHECKED";
+export const ADD_SELECT = "ADD_SELECT"

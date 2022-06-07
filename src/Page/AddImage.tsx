@@ -1,14 +1,17 @@
 import Heading from "../components/heading";
 import ImageComponent from "../components/imageComponent";
 import PrimaryButton from "../components/button";
-import { useAppSelector } from "../hooks/redux-hooks";
+import { useAppSelector, useAppDispatch } from "../hooks/redux-hooks";
 import { RootState } from "../Redux/store";
+import { AddSelectAction } from "../Redux/Action/action";
 
-function AddImagePage(){
-    const image = useAppSelector((state: RootState) => state.HandleCheck.checkedData);
-    console.log(image)
-    const single = image[0]
-    const name = single && single.description && single.description.split(" ")[0]
+type AddIMageProps = {
+    onClose:()=>any
+}
+function AddImagePage({onClose}:AddIMageProps){
+    const dispatch = useAppDispatch();
+    const image = useAppSelector((state: RootState) => state.SelectPageImageReducer.image);
+    const name = image && image.description && image.description.split(" ")[0]
     
     return(
         <div className="mx-3 mx-3">
@@ -25,7 +28,7 @@ function AddImagePage(){
                     <ImageComponent
                         imgcss="px-2 h-92 "
                         hiddenDisplay={true}
-                        image={single}
+                        image={image}
                     />
                 </div>
                 <div className="flex justify-between ">
@@ -43,7 +46,7 @@ function AddImagePage(){
                     </div>
                     <div className="w-1/6">
                         <div>Dimention</div>
-                        <div>{`${single.width} * ${single.height}`}</div>
+                        <div>{`${image.width} * ${image.height}`}</div>
                     </div>
                 </div>
             </div>
@@ -51,6 +54,10 @@ function AddImagePage(){
                 <PrimaryButton 
                     btntext="Add Image"
                     css="text-xs bg-sky-500/100 text-white py-2 px-3 "
+                    onClick={()=> {
+                        dispatch(AddSelectAction(image))
+                        onClose()
+                    }}
                 />
             </div>
         </div>

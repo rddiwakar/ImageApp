@@ -1,6 +1,7 @@
 import { useEffect, useState } from "react";
 import {useAppDispatch,useAppSelector} from "../hooks/redux-hooks"
 import { selectCheckedAction, selectUncheckedAction } from "../Redux/Action/actionadd";
+import { selectImageAction } from "../Redux/Action/selectImageaction";
 import { RootState } from "../Redux/store";
 type ImageComponentProps={
     imgcss:String,
@@ -9,7 +10,8 @@ type ImageComponentProps={
 }
 
 function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
-  const allChecked = useAppSelector((state:RootState)=>state.HandleCheck.allChecked)
+  const allChecked = useAppSelector((state:RootState) => state.HandleCheck.allChecked);
+  //const hover = useAppDispatch((state:RootState) => state.SelectPageImageReducer.hover);
   const dispatch = useAppDispatch()
     const [checked,setChecked]= useState(false);
     const handleChecked=()=>{
@@ -33,7 +35,11 @@ function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
             checked={checked} 
             onChange={handleChecked}
           />
-          <img alt='photo' src={image && image.urls && image.urls.small} className={`${imgcss}`} />
+          <img alt='photo' 
+            src={image && image.urls && image.urls.small} 
+            className={`${imgcss} `}
+            onClick={()=>dispatch(selectImageAction(image))} 
+          />
           <div className={` ${hiddenDisplay && 'hidden'}`}>{name ||""}</div>
         </div>
     )

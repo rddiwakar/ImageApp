@@ -73,7 +73,9 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
                 visible={addModal}
                 width={712}
             >
-                <AddImagePage />
+                <AddImagePage 
+                    onClose={() => setAddModal(false)}
+                />
             </ModalComponent>
         </div>
     )
