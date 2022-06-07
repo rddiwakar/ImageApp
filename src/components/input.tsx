@@ -1,9 +1,7 @@
 import React from 'react'
-import {FiSearch} from 'react-icons/fi'
-type SearchInputProps = {
-    Change:((event:any)=>any),
-    Value:string
-}
+import {FiSearch} from 'react-icons/fi';
+import {SearchInputProps} from "../react-app-env"
+
 function SearchInput({Change,Value}:SearchInputProps){
     return(
         <div className="relative">

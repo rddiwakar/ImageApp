@@ -1,9 +1,6 @@
 import React from 'react';
-type ButtonProps ={
-    btntext:String,
-    css :String,
-    onClick?:()=>any
-}
+import {ButtonProps} from "../react-app-env"
+
 function PrimaryButton({btntext,css,onClick}:ButtonProps){
     return(
         <>

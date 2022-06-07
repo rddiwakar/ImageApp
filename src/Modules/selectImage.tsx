@@ -1,17 +1,11 @@
 import React, { useState } from 'react';
 import { Modal} from 'antd';
+import {ModalComponentProps} from "../react-app-env"
 
-type ModalComponent  = {
-  onOpen?:()=>any,
-  onClose:()=>any,
-  visible: boolean,
-  children:React.ReactNode | React.ReactNode[],
-  width:number
-}
 
 const ModalComponent  = ({
   children, onClose,visible,width
-}:ModalComponent ) => {
+}:ModalComponentProps ) => {
   return (
       <Modal
         centered

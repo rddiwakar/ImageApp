@@ -3,15 +3,10 @@ import {useAppDispatch,useAppSelector} from "../hooks/redux-hooks"
 import { selectCheckedAction, selectUncheckedAction } from "../Redux/Action/actionadd";
 import { selectImageAction } from "../Redux/Action/selectImageaction";
 import { RootState } from "../Redux/store";
-type ImageComponentProps={
-    imgcss:String,
-    hiddenDisplay ?:boolean,
-    image :any
-}
+import {ImageComponentProps} from "../react-app-env";
 
 function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
   const allChecked = useAppSelector((state:RootState) => state.HandleCheck.allChecked);
-  //const hover = useAppDispatch((state:RootState) => state.SelectPageImageReducer.hover);
   const dispatch = useAppDispatch()
     const [checked,setChecked]= useState(false);
     const handleChecked=()=>{
@@ -25,7 +20,9 @@ function ImageComponent({imgcss,hiddenDisplay,image}:ImageComponentProps){
                 dispatch(selectUncheckedAction(image.id)) 
     },[checked])
     
-    const name = image && image.description && image.description.split(" ")[0]
+    const name = image && !(image.description == null) ?
+                image.description && image.description.split(" ")[0]:
+                image.alt_description && image.alt_description.split(" ")[0]
     
     return(
         <div className='relative mt-4 mr-3'>

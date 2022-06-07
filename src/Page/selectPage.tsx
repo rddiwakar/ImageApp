@@ -8,9 +8,7 @@ import AddImagePage from "./AddImage";
 import {useAppDispatch, useAppSelector} from "../hooks/redux-hooks"
 import { RootState } from "../Redux/store";
 import { selectFetchImages } from "../Redux/Action/selectedAction";
-type SelectImagePageProps ={
-    onCloseSelect:()=>any
-}
+import {SelectImagePageProps} from "../react-app-env";
 
 function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
     const [addModal,setAddModal] = useState(false)
@@ -50,11 +48,11 @@ function SelectImagePage({onCloseSelect}:SelectImagePageProps) {
                     />
                 </div>
             </div>
-            <div className="border border-dotted rounded-xl px-2 py-2 mx-2 my-4 h-96 overflow-y-auto">
+            <div className="border-dotted border-2 border-blue-600 rounded-xl px-2 py-2 mx-2 my-4 h-96 overflow-y-auto">
                 {
                     selectLoading ? "...loading":
                     <ImageWrapper
-                        imgcss="w-48 h-32"
+                        imgcss="w-48 h-32 sm:w-30 sm:h-18"
                         images={selectImage}
                         hiddenDisplay = {true}
                     />

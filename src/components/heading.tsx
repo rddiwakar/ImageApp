@@ -1,25 +1,18 @@
 import PrimaryButton from "./button";
-type HeadingProps={
-    title:String,
-    description:String,
-    btntext :{
-        text:String,
-        css:String,
-        onClick?:()=>any
-    }
-}
+import {HeadingProps} from "../react-app-env"
+
 function Heading({title,description,btntext}:HeadingProps) {
     return (
         <div>
             <div className='flex justify-between'>
-                <h2 className="text-xl font-semibold">{title}</h2>
+                <h2 className="md:text-xl font-semibold sm:text-xs">{title}</h2>
                 <PrimaryButton 
                     btntext={btntext.text} 
                     css={btntext.css}
                     onClick={btntext.onClick}
                 />
             </div>
-            <p className='text-slate-400'>{description}</p>
+            <p className='text-slate-400 md:text-sm sm:text-xs'>{description}</p>
         </div>
     )
 }

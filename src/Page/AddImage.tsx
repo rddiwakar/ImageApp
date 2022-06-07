@@ -4,15 +4,15 @@ import PrimaryButton from "../components/button";
 import { useAppSelector, useAppDispatch } from "../hooks/redux-hooks";
 import { RootState } from "../Redux/store";
 import { AddSelectAction } from "../Redux/Action/action";
+import {AddIMageProps} from "../react-app-env"
 
-type AddIMageProps = {
-    onClose:()=>any
-}
 function AddImagePage({onClose}:AddIMageProps){
     const dispatch = useAppDispatch();
     const image = useAppSelector((state: RootState) => state.SelectPageImageReducer.image);
-    const name = image && image.description && image.description.split(" ")[0]
-    
+
+    const name = image && !(image.description == null) ?
+                image.description && image.description.split(" ")[0]:
+                image.alt_description && image.alt_description.split(" ")[0]
     return(
         <div className="mx-3 mx-3">
             <Heading 
@@ -23,7 +23,7 @@ function AddImagePage({onClose}:AddIMageProps){
                     css:"hidden"
                 }}
             />
-            <div className="border border-dotted rounded-xl px-2 py-2 m-auto">
+            <div className="border-dotted border-2 border-blue-600 rounded-xl px-2 py-2 m-auto">
                 <div className="flex justify-center">
                     <ImageComponent
                         imgcss="px-2 h-92 "

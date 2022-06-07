@@ -1,13 +1,10 @@
 
 import ImageComponent from "./imageComponent";
-type ImageWrapperProps = {
-    imgcss:String,
-    images ?:any,
-    hiddenDisplay ?:boolean,
-}
+import {ImageWrapperProps} from "../react-app-env";
+
 function ImageWrapper({imgcss,images,hiddenDisplay}:ImageWrapperProps){
     return(
-        <div className="flex flex-wrap justify-between">
+        <div className="flex flex-wrap">
             {images.map((item :any)=>{
                 return(
                     <ImageComponent 

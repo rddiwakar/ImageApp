@@ -12,13 +12,8 @@ import { RootState } from './Redux/store'
 import { deleteCheckedAction, fetchImages } from './Redux/Action/action';
 import { sortBy} from 'lodash';
 import { AllCheckedAction, removeCheckedAction } from './Redux/Action/actionadd';
+import {SortType} from "./react-app-env"
 
-type SortType ={
-  NONE:(list:any)=>any,
-  TITLE:(list:any)=>any,
-  DATE:(list:any)=>any,
-  SIZE:(list:any)=>any,
-}
 function App() {
   const [selectModulevisible, setSelectModuleVisible] = useState(false);
   const openSelectModuleVisible = () => setSelectModuleVisible(true)
@@ -32,7 +27,9 @@ function App() {
     await setInputValue(event.target.value)
   }
   
-  Images = Images.filter((item : any) =>item.description && item.description.startsWith(inputValue))
+  Images = Images.filter(
+    (item : any) => !(item.description == null) ? item.description.startsWith(inputValue) : item.alt_description.startsWith(inputValue)
+  )
 
   useEffect(() => {
     dispatch(fetchImages("random"))
@@ -70,7 +67,7 @@ function App() {
           onClick: openSelectModuleVisible
         }}
       />
-      <div className='border divide-x border-slate-200 divide-y divide-slate-200 rounded-md mt-3'>
+      <div className='border border-slate-200 divide-y divide-slate-200 rounded-md mt-3'>
         <div className=' divide-slate-200 flex flex-row px-1 '>
           <div className="basis-1/6 flex justify-center pt-4">
             <input 
@@ -122,7 +119,7 @@ function App() {
       </div>
       {loading ? '...loading' :
         <ImageWrapper
-          imgcss="w-40 h-24"
+          imgcss="w-40 h-24 sm:w-30 sm:h-18"
           images={sortedList}
         />
       }
