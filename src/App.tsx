@@ -12,7 +12,7 @@ import { RootState } from './Redux/store'
 import { deleteCheckedAction, fetchImages } from './Redux/Action/action';
 import { sortBy} from 'lodash';
 import { AllCheckedAction, removeCheckedAction } from './Redux/Action/actionadd';
-import {SortType} from "./react-app-env"
+
 
 function App() {
   const [selectModulevisible, setSelectModuleVisible] = useState(false);
@@ -34,14 +34,14 @@ function App() {
   useEffect(() => {
     dispatch(fetchImages("random"))
   }, [])
-  const [sort, setSort] = useState<String>('NONE');
-  const SORTS:SortType = {
-    "NONE": (list:any) => list,
-    "TITLE": (list:any) => sortBy(list, 'description'),
-    "DATE": (list:any) => sortBy(list, 'created_at'),
-    "SIZE": (list:any) => sortBy(list, 'width'), 
+  const [sort, setSort] = useState('NONE');
+  const SORTS: { [key: string]: (list:any)=>any } = {
+    "NONE": (list) => list,
+    "TITLE": (list) => sortBy(list, 'description'),
+    "DATE": (list) => sortBy(list, 'created_at'),
+    "SIZE": (list) => sortBy(list, 'width'), 
   };
-  const handleSort = (title: String) => {
+  const handleSort = (title: string) => {
     setSort(title)
   };
   const sortFunction = SORTS[sort];   

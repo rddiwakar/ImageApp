@@ -1,9 +1,9 @@
 /// <reference types="react-scripts" />
 export type SortType ={
-    NONE:(list:any)=>any,
-    TITLE:(list:any)=>any,
-    DATE:(list:any)=>any,
-    SIZE:(list:any)=>any,
+    "NONE":(list:any)=>any,
+    "TITLE":(list:any)=>any,
+    "DATE":(list:any)=>any,
+    "SIZE":(list:any)=>any,
   }
 
 export type ActionType ={
